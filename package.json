@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/0x-hunter/contracts/issues"
   },
-  "homepage": "https://github.com/0x-hunter/contracts#readme"
+  "homepage": "https://github.com/0x-hunter/contracts#readme",
+  "dependencies": {
+    "@0x/contracts-erc20": "^3.3.36"
+  }
 }
