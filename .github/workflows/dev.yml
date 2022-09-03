@@ -13,6 +13,8 @@ jobs:
         with:
           node-version: 16
       - run: |
+          npm i -g ethereum-abi-types-generator
+          ./ci/abi.sh
           cd ts
           sed -i "s/\"1.0.0\"/\"1.0.0-${ABI_NUMBER}\"/" package.json
           npm i
