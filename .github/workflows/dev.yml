@@ -15,14 +15,10 @@ jobs:
       - run: |
           cd ts
           sed -i "s/\"1.0.0\"/\"1.0.0-${ABI_NUMBER}\"/" package.json
+          npm i
+          npm run tsc
         env:
           ABI_NUMBER: ${{ github.run_number }}
-      - run: |
-          cd ts
-          npm i
-      - run: |
-          cd ts
-          npm run tsc
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
