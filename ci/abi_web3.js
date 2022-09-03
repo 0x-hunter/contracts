@@ -7,6 +7,7 @@ let inFile = process.argv[2]
 let outDir = process.argv[3]
 
 let jsonObject = JSON.parse(fs.readFileSync(inFile).toString())
+
 let basename = path.basename(inFile)
 let i = basename.lastIndexOf(".")
 if (i >= 0) {
@@ -17,9 +18,9 @@ let code = `
 import * as ERC from "./${basename}";
 import Web3 from "web3"
 
-export default function(w3: Web3, addr: string): ERC.ContractContext {
+export default function(w3: Web3, addr: string): ERC.${basename} {
     let contract = new w3.eth.Contract(${JSON.stringify(jsonObject.abi)} as any, addr)
-    return contract as any as ERC.ContractContext;
+    return contract.methods as any as ERC.${basename};
 }
 `
 
