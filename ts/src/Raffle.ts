@@ -197,8 +197,10 @@ export interface RaffleCreatedEventEmittedResponse {
   duration: string;
 }
 export interface RaffleEnteredEventEmittedResponse {
+  taskId: string;
   user: string;
-  amount: string;
+  lowerBound: string;
+  upperBound: string;
 }
 export interface WinningTicketPickedEventEmittedResponse {
   taskId: string;
