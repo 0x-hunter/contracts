@@ -4,10 +4,10 @@ cd abi
 
 for ITEM in $(ls *.json)
 do
-    ../ci/abi_abi.js $ITEM ../go-contract/$ITEM
     NAME=${ITEM%.*}
+    ../ci/abi_abi.js $ITEM ./$NAME.abi.json
     PKG=$(echo $NAME | tr A-Z a-z)
-    mkdir -p ../go-contract/$PKG
-    abigen --abi=../go-contract/$ITEM --pkg=$PKG --out=../go-contract/$PKG/$NAME.go
-    rm -rf ../go-contract/$ITEM
+    mkdir -p ../$PKG
+    abigen --abi=./$NAME.abi.json --pkg=$PKG --out=../$PKG/$NAME.go
+    rm -f ./$NAME.abi.json
 done
