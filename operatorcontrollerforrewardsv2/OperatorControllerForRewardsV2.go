@@ -30,7 +30,7 @@ var (
 
 // Operatorcontrollerforrewardsv2MetaData contains all meta data concerning the Operatorcontrollerforrewardsv2 contract.
 var Operatorcontrollerforrewardsv2MetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_feeSharingSystem\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_feeSharingSetter\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_tokenSplitter\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_teamVesting\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_treasuryVesting\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_tradingRewardsDistributor\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"canRelease\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"releaseTokensAndUpdateRewards\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_feeSharingSystem\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_feeSharingSetter\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_tokenSplitter\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_teamVesting\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_tradingRewardsDistributor\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"canRelease\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeSharingSetter\",\"outputs\":[{\"internalType\":\"contractFeeSharingSetter\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeSharingSystem\",\"outputs\":[{\"internalType\":\"contractFeeSharingSystem\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"tokens\",\"type\":\"address[]\"}],\"name\":\"releaseTokensAndUpdateRewards\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"teamVesting\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"tokenSplitter\",\"outputs\":[{\"internalType\":\"contractTokenSplitter\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"tradingRewardsDistributor\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // Operatorcontrollerforrewardsv2ABI is the input ABI used to generate the binding from.
@@ -210,6 +210,68 @@ func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2CallerSessi
 	return _Operatorcontrollerforrewardsv2.Contract.CanRelease(&_Operatorcontrollerforrewardsv2.CallOpts)
 }
 
+// FeeSharingSetter is a free data retrieval call binding the contract method 0x17ff3854.
+//
+// Solidity: function feeSharingSetter() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Caller) FeeSharingSetter(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Operatorcontrollerforrewardsv2.contract.Call(opts, &out, "feeSharingSetter")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// FeeSharingSetter is a free data retrieval call binding the contract method 0x17ff3854.
+//
+// Solidity: function feeSharingSetter() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Session) FeeSharingSetter() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.FeeSharingSetter(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// FeeSharingSetter is a free data retrieval call binding the contract method 0x17ff3854.
+//
+// Solidity: function feeSharingSetter() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2CallerSession) FeeSharingSetter() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.FeeSharingSetter(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// FeeSharingSystem is a free data retrieval call binding the contract method 0x7f085fd1.
+//
+// Solidity: function feeSharingSystem() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Caller) FeeSharingSystem(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Operatorcontrollerforrewardsv2.contract.Call(opts, &out, "feeSharingSystem")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// FeeSharingSystem is a free data retrieval call binding the contract method 0x7f085fd1.
+//
+// Solidity: function feeSharingSystem() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Session) FeeSharingSystem() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.FeeSharingSystem(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// FeeSharingSystem is a free data retrieval call binding the contract method 0x7f085fd1.
+//
+// Solidity: function feeSharingSystem() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2CallerSession) FeeSharingSystem() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.FeeSharingSystem(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
 //
 // Solidity: function owner() view returns(address)
@@ -241,25 +303,118 @@ func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2CallerSessi
 	return _Operatorcontrollerforrewardsv2.Contract.Owner(&_Operatorcontrollerforrewardsv2.CallOpts)
 }
 
-// ReleaseTokensAndUpdateRewards is a paid mutator transaction binding the contract method 0x43401a8a.
+// TeamVesting is a free data retrieval call binding the contract method 0x619f3d6c.
 //
-// Solidity: function releaseTokensAndUpdateRewards() returns()
-func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Transactor) ReleaseTokensAndUpdateRewards(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Operatorcontrollerforrewardsv2.contract.Transact(opts, "releaseTokensAndUpdateRewards")
+// Solidity: function teamVesting() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Caller) TeamVesting(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Operatorcontrollerforrewardsv2.contract.Call(opts, &out, "teamVesting")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
-// ReleaseTokensAndUpdateRewards is a paid mutator transaction binding the contract method 0x43401a8a.
+// TeamVesting is a free data retrieval call binding the contract method 0x619f3d6c.
 //
-// Solidity: function releaseTokensAndUpdateRewards() returns()
-func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Session) ReleaseTokensAndUpdateRewards() (*types.Transaction, error) {
-	return _Operatorcontrollerforrewardsv2.Contract.ReleaseTokensAndUpdateRewards(&_Operatorcontrollerforrewardsv2.TransactOpts)
+// Solidity: function teamVesting() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Session) TeamVesting() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.TeamVesting(&_Operatorcontrollerforrewardsv2.CallOpts)
 }
 
-// ReleaseTokensAndUpdateRewards is a paid mutator transaction binding the contract method 0x43401a8a.
+// TeamVesting is a free data retrieval call binding the contract method 0x619f3d6c.
 //
-// Solidity: function releaseTokensAndUpdateRewards() returns()
-func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2TransactorSession) ReleaseTokensAndUpdateRewards() (*types.Transaction, error) {
-	return _Operatorcontrollerforrewardsv2.Contract.ReleaseTokensAndUpdateRewards(&_Operatorcontrollerforrewardsv2.TransactOpts)
+// Solidity: function teamVesting() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2CallerSession) TeamVesting() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.TeamVesting(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// TokenSplitter is a free data retrieval call binding the contract method 0xa46074c3.
+//
+// Solidity: function tokenSplitter() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Caller) TokenSplitter(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Operatorcontrollerforrewardsv2.contract.Call(opts, &out, "tokenSplitter")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// TokenSplitter is a free data retrieval call binding the contract method 0xa46074c3.
+//
+// Solidity: function tokenSplitter() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Session) TokenSplitter() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.TokenSplitter(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// TokenSplitter is a free data retrieval call binding the contract method 0xa46074c3.
+//
+// Solidity: function tokenSplitter() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2CallerSession) TokenSplitter() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.TokenSplitter(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// TradingRewardsDistributor is a free data retrieval call binding the contract method 0x2904e547.
+//
+// Solidity: function tradingRewardsDistributor() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Caller) TradingRewardsDistributor(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Operatorcontrollerforrewardsv2.contract.Call(opts, &out, "tradingRewardsDistributor")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// TradingRewardsDistributor is a free data retrieval call binding the contract method 0x2904e547.
+//
+// Solidity: function tradingRewardsDistributor() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Session) TradingRewardsDistributor() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.TradingRewardsDistributor(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// TradingRewardsDistributor is a free data retrieval call binding the contract method 0x2904e547.
+//
+// Solidity: function tradingRewardsDistributor() view returns(address)
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2CallerSession) TradingRewardsDistributor() (common.Address, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.TradingRewardsDistributor(&_Operatorcontrollerforrewardsv2.CallOpts)
+}
+
+// ReleaseTokensAndUpdateRewards is a paid mutator transaction binding the contract method 0xa135a72c.
+//
+// Solidity: function releaseTokensAndUpdateRewards(address[] tokens) returns()
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Transactor) ReleaseTokensAndUpdateRewards(opts *bind.TransactOpts, tokens []common.Address) (*types.Transaction, error) {
+	return _Operatorcontrollerforrewardsv2.contract.Transact(opts, "releaseTokensAndUpdateRewards", tokens)
+}
+
+// ReleaseTokensAndUpdateRewards is a paid mutator transaction binding the contract method 0xa135a72c.
+//
+// Solidity: function releaseTokensAndUpdateRewards(address[] tokens) returns()
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2Session) ReleaseTokensAndUpdateRewards(tokens []common.Address) (*types.Transaction, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.ReleaseTokensAndUpdateRewards(&_Operatorcontrollerforrewardsv2.TransactOpts, tokens)
+}
+
+// ReleaseTokensAndUpdateRewards is a paid mutator transaction binding the contract method 0xa135a72c.
+//
+// Solidity: function releaseTokensAndUpdateRewards(address[] tokens) returns()
+func (_Operatorcontrollerforrewardsv2 *Operatorcontrollerforrewardsv2TransactorSession) ReleaseTokensAndUpdateRewards(tokens []common.Address) (*types.Transaction, error) {
+	return _Operatorcontrollerforrewardsv2.Contract.ReleaseTokensAndUpdateRewards(&_Operatorcontrollerforrewardsv2.TransactOpts, tokens)
 }
 
 // RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.

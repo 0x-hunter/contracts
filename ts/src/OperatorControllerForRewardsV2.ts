@@ -77,9 +77,14 @@ export interface OperatorControllerForRewardsV2EventsContext {
 export type OperatorControllerForRewardsV2MethodNames =
   | 'new'
   | 'canRelease'
+  | 'feeSharingSetter'
+  | 'feeSharingSystem'
   | 'owner'
   | 'releaseTokensAndUpdateRewards'
   | 'renounceOwnership'
+  | 'teamVesting'
+  | 'tokenSplitter'
+  | 'tradingRewardsDistributor'
   | 'transferOwnership';
 export interface OwnershipTransferredEventEmittedResponse {
   previousOwner: string;
@@ -95,7 +100,6 @@ export interface OperatorControllerForRewardsV2 {
    * @param _feeSharingSetter Type: address, Indexed: false
    * @param _tokenSplitter Type: address, Indexed: false
    * @param _teamVesting Type: address, Indexed: false
-   * @param _treasuryVesting Type: address, Indexed: false
    * @param _tradingRewardsDistributor Type: address, Indexed: false
    */
   'new'(
@@ -103,7 +107,6 @@ export interface OperatorControllerForRewardsV2 {
     _feeSharingSetter: string,
     _tokenSplitter: string,
     _teamVesting: string,
-    _treasuryVesting: string,
     _tradingRewardsDistributor: string
   ): MethodReturnContext;
   /**
@@ -119,14 +122,29 @@ export interface OperatorControllerForRewardsV2 {
    * StateMutability: view
    * Type: function
    */
+  feeSharingSetter(): MethodConstantReturnContext<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  feeSharingSystem(): MethodConstantReturnContext<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
   owner(): MethodConstantReturnContext<string>;
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
+   * @param tokens Type: address[], Indexed: false
    */
-  releaseTokensAndUpdateRewards(): MethodReturnContext;
+  releaseTokensAndUpdateRewards(tokens: string[]): MethodReturnContext;
   /**
    * Payable: false
    * Constant: false
@@ -134,6 +152,27 @@ export interface OperatorControllerForRewardsV2 {
    * Type: function
    */
   renounceOwnership(): MethodReturnContext;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  teamVesting(): MethodConstantReturnContext<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  tokenSplitter(): MethodConstantReturnContext<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  tradingRewardsDistributor(): MethodConstantReturnContext<string>;
   /**
    * Payable: false
    * Constant: false

@@ -54,19 +54,18 @@ export interface MethodConstantReturnContext<TCallReturn> {
 export interface MethodReturnContext extends MethodPayableReturnContext {}
 
 export type ContractContext = Web3ContractContext<
-  RewardSharingSystem,
-  RewardSharingSystemMethodNames,
-  RewardSharingSystemEventsContext,
-  RewardSharingSystemEvents
+  FeeSharingSystem,
+  FeeSharingSystemMethodNames,
+  FeeSharingSystemEventsContext,
+  FeeSharingSystemEvents
 >;
-export type RewardSharingSystemEvents =
+export type FeeSharingSystemEvents =
   | 'Deposit'
-  | 'HarvestFee'
-  | 'HarvestHTG'
+  | 'Harvest'
   | 'NewRewardPeriod'
   | 'OwnershipTransferred'
   | 'Withdraw';
-export interface RewardSharingSystemEventsContext {
+export interface FeeSharingSystemEventsContext {
   Deposit(
     parameters: {
       filter?: { user?: string | string[] };
@@ -76,16 +75,7 @@ export interface RewardSharingSystemEventsContext {
     },
     callback?: (error: Error, event: EventData) => void
   ): EventResponse;
-  HarvestFee(
-    parameters: {
-      filter?: { user?: string | string[] };
-      fromBlock?: number;
-      toBlock?: 'latest' | number;
-      topics?: string[];
-    },
-    callback?: (error: Error, event: EventData) => void
-  ): EventResponse;
-  HarvestHTG(
+  Harvest(
     parameters: {
       filter?: { user?: string | string[] };
       fromBlock?: number;
@@ -125,20 +115,20 @@ export interface RewardSharingSystemEventsContext {
     callback?: (error: Error, event: EventData) => void
   ): EventResponse;
 }
-export type RewardSharingSystemMethodNames =
+export type FeeSharingSystemMethodNames =
   | 'new'
   | 'PRECISION_FACTOR'
+  | 'calculatePendingRewards'
+  | 'calculateSharePriceInLOOKS'
+  | 'calculateSharesValueInLOOKS'
   | 'currentRewardPerBlock'
   | 'deposit'
-  | 'harvestFee'
-  | 'harvestHTG'
+  | 'harvest'
   | 'hunterGovernanceToken'
   | 'lastRewardAdjustment'
   | 'lastRewardBlock'
   | 'lastUpdateBlock'
   | 'owner'
-  | 'pendingFeeRewards'
-  | 'pendingHTGRewards'
   | 'periodEndBlock'
   | 'renounceOwnership'
   | 'rewardPerTokenStored'
@@ -155,11 +145,7 @@ export interface DepositEventEmittedResponse {
   amount: string;
   harvestedAmount: string;
 }
-export interface HarvestFeeEventEmittedResponse {
-  user: string;
-  harvestedAmount: string;
-}
-export interface HarvestHTGEventEmittedResponse {
+export interface HarvestEventEmittedResponse {
   user: string;
   harvestedAmount: string;
 }
@@ -178,23 +164,22 @@ export interface WithdrawEventEmittedResponse {
   harvestedAmount: string;
 }
 export interface UserInfoResponse {
-  amount: string;
   shares: string;
   userRewardPerTokenPaid: string;
   rewards: string;
 }
-export interface RewardSharingSystem {
+export interface FeeSharingSystem {
   /**
    * Payable: false
    * Constant: false
    * StateMutability: nonpayable
    * Type: constructor
-   * @param _hunterGovernanceToken Type: address, Indexed: false
+   * @param _looksRareToken Type: address, Indexed: false
    * @param _rewardToken Type: address, Indexed: false
    * @param _tokenDistributor Type: address, Indexed: false
    */
   'new'(
-    _hunterGovernanceToken: string,
+    _looksRareToken: string,
     _rewardToken: string,
     _tokenDistributor: string
   ): MethodReturnContext;
@@ -205,6 +190,31 @@ export interface RewardSharingSystem {
    * Type: function
    */
   PRECISION_FACTOR(): MethodConstantReturnContext<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   * @param user Type: address, Indexed: false
+   */
+  calculatePendingRewards(user: string): MethodConstantReturnContext<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   */
+  calculateSharePriceInLOOKS(): MethodConstantReturnContext<string>;
+  /**
+   * Payable: false
+   * Constant: true
+   * StateMutability: view
+   * Type: function
+   * @param user Type: address, Indexed: false
+   */
+  calculateSharesValueInLOOKS(
+    user: string
+  ): MethodConstantReturnContext<string>;
   /**
    * Payable: false
    * Constant: true
@@ -227,14 +237,7 @@ export interface RewardSharingSystem {
    * StateMutability: nonpayable
    * Type: function
    */
-  harvestFee(): MethodReturnContext;
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   */
-  harvestHTG(): MethodReturnContext;
+  harvest(): MethodReturnContext;
   /**
    * Payable: false
    * Constant: true
@@ -270,22 +273,6 @@ export interface RewardSharingSystem {
    * Type: function
    */
   owner(): MethodConstantReturnContext<string>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   * @param user Type: address, Indexed: false
-   */
-  pendingFeeRewards(user: string): MethodConstantReturnContext<string>;
-  /**
-   * Payable: false
-   * Constant: true
-   * StateMutability: view
-   * Type: function
-   * @param user Type: address, Indexed: false
-   */
-  pendingHTGRewards(user: string): MethodConstantReturnContext<string>;
   /**
    * Payable: false
    * Constant: true
@@ -361,10 +348,10 @@ export interface RewardSharingSystem {
    * Constant: false
    * StateMutability: nonpayable
    * Type: function
-   * @param amount Type: uint256, Indexed: false
+   * @param shares Type: uint256, Indexed: false
    * @param claimRewardToken Type: bool, Indexed: false
    */
-  withdraw(amount: string, claimRewardToken: boolean): MethodReturnContext;
+  withdraw(shares: string, claimRewardToken: boolean): MethodReturnContext;
   /**
    * Payable: false
    * Constant: false
