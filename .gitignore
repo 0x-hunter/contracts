@@ -108,3 +108,4 @@ dist
 .deps/
 
 package-lock.json
+.DS_Store
