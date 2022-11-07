@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/0x-hunter/contracts/issues"
   },
-  "homepage": "https://github.com/0x-hunter/contracts#readme"
+  "homepage": "https://github.com/0x-hunter/contracts#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3"
+  }
 }
